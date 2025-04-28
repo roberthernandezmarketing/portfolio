@@ -1,0 +1,52 @@
+// ---------------------------------------------------------------- //
+// 1.Selección de Elementos del DOM:
+// ---------------------------------------------------------------- //
+// selecciona el elemento con el ID menu-btn, que es el botón del menú.
+const menuBtn     = document.getElementById("menu-btn");
+
+// selecciona el elemento con el ID nav-links, que es el contenedor de
+// los enlaces de navegación.
+const navLinks    = document.getElementById("nav-links");
+
+// selecciona el primer elemento <i> (ícono) que es descendiente del 
+// menuBtn. Este ícono se usa para mostrar diferentes iconos (como un icono de
+// menú o de cierre).
+const menuBtnIcon = menuBtn.querySelector("i");
+
+// ---------------------------------------------------------------- //
+// 2.Añadiendo un Evento de Click al Botón del Menú:
+// ---------------------------------------------------------------- //
+// añade un listener de  evento  para  el evento click en el botón del menú.
+menuBtn.addEventListener("click", (e) => {
+
+// alterna la clase open en el elemento navLinks.Si la clase open está presente
+// se eliminará; si no está presente, se añadirá. Mostrar u ocultar el menú.
+  navLinks.classList.toggle("open");
+
+// verifica si navLinks contiene la clase open y guarda el resultado (T o F) 
+// en la constante isOpen.
+  const isOpen = navLinks.classList.contains("open");
+
+// cambia la clase del ícono del botón del menú. Si isOpen es T, se establece
+// la clase ri-close-line (ícono de cerrar). 
+// Si isOpen es F, se establece la clase ri-menu-line (ícono de menú).
+  menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+
+});
+
+// ---------------------------------------------------------------- //
+// 3.Añadiendo un Evento de Click a los Enlaces de Navegación:
+// ---------------------------------------------------------------- //
+// añade un listener de evento para el evento click en el contenedor de enlaces
+// de navegación.
+navLinks.addEventListener("click", (e) => {
+
+// elimina la clase open del contenedor de enlaces de navegación, oculta menú
+  navLinks.classList.remove("open");
+
+// asegura que el ícono del botón del menú se establece en ri-menu-line, 
+// independientemente del estado anterior del menú. 
+// Esto restablece el ícono del botón del menú a su estado original.
+  menuBtnIcon.setAttribute("class", "ri-menu-line");
+
+});
